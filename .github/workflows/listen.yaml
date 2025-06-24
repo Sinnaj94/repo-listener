@@ -10,3 +10,7 @@ jobs:
     steps:
       - name: Say hi
         run: echo "Repo reported a docs commit!"
+      - name: Get commit message from client_payload
+        id: get_payload
+        run: |
+          echo "commit_msg=${{ github.event.client_payload.commit_msg }}" >> $GITHUB_OUTPUT
