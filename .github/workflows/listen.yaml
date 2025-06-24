@@ -10,7 +10,25 @@ jobs:
     steps:
       - name: Say hi
         run: echo "Repo reported a docs commit!"
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.TOKEN }}
       - name: Get commit message from client_payload
         id: get_payload
         run: |
           echo "commit_msg=${{ github.event.client_payload.commit_msg }}" >> $GITHUB_OUTPUT
+      - name: Write commit into CHANGELOG.md
+        run: |
+          echo "" >> CHANGELOG.md
+          echo "---" >> CHANGELOG.md
+          echo "Latest docs commit: ${{ steps.get_payload.outputs.commit_msg }}" >> CHANGELOG.md
+          echo "Updated on: $(date)" >> CHANGELOG.md
+      - name: Commit and push changes
+        run: |
+          # TODO: Actually have to pass user name etc
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add CHANGELOG.md
+          git commit -m "Docs update from emitter: ${{ steps.get_payload.outputs.commit_msg }}" || echo "No changes to commit"
+          git push
