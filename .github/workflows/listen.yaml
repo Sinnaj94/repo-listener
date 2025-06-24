@@ -1,0 +1,12 @@
+name: Handle docs commit from beta
+
+on:
+  repository_dispatch:
+    types: [docs-commit]
+
+jobs:
+  respond-to-docs-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say hi
+        run: echo "Repo beta reported a docs commit!"
