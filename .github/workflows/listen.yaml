@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Say hi
-        run: echo "Repo beta reported a docs commit!"
+        run: echo "Repo reported a docs commit!"
