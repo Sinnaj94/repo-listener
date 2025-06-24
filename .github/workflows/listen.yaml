@@ -22,7 +22,7 @@ jobs:
         run: |
           echo "" >> CHANGELOG.md
           echo "---" >> CHANGELOG.md
-          echo "Latest docs commit: ${{ steps.get_payload.outputs.commit_msg }}" >> CHANGELOG.md
+          echo "${{ steps.get_payload.outputs.commit_msg }}" >> CHANGELOG.md
           echo "Updated on: $(date)" >> CHANGELOG.md
       - name: Commit and push changes
         run: |
