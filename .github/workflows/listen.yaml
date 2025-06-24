@@ -1,4 +1,4 @@
-name: Handle docs commit from beta
+name: Handle docs commit from repo-emitter
 
 on:
   repository_dispatch:
